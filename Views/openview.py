@@ -10,7 +10,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-from LaserGUIs.Views.laserui import Ui_MainWindow
+from Laser.Views.laserui import Ui_MainWindow
 
 
 class OpenView(object):
@@ -147,3 +147,13 @@ class OpenView(object):
         self.pushButton.setText(_translate("Form", "Kapaz"))
         self.pushButton_2.setText(_translate("Form", "Shakhdag"))
 
+
+if __name__ == "__main__":
+    import sys
+
+    app = QtWidgets.QApplication(sys.argv)
+    Form = QtWidgets.QWidget()
+    ui = OpenView()
+    ui.setupUi(Form)
+    Form.show()
+    sys.exit(app.exec_())

@@ -26,9 +26,9 @@ from pyqtgraph import PlotWidget
 from scipy.signal import savgol_filter
 
 # modules created
-from LaserGUIs.Classes.ClassLaser import USBScope, Laser
-from cplot import Cplot
-from LaserGUIs.Classes.ClassRedPitaya import MyRedpitaya
+from Laser.Classes.ClassLaser import USBScope, Laser
+from Laser.Views.cplot import Cplot
+from Laser.Classes.ClassRedPitaya import MyRedpitaya
 
 
 class Ui_MainWindow(object):

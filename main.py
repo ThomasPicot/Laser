@@ -1,5 +1,5 @@
-
-from LaserGUIs.Views.openview import OpenView
+from PyQt5 import QtWidgets
+from Laser.Views.openview import OpenView
 
 if __name__ == "__main__":
     import sys
