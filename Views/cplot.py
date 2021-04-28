@@ -11,7 +11,7 @@
 from PyQt5 import QtCore, QtWidgets
 from pyqtgraph import PlotWidget
 import numpy as np
-from Laser.Classes.ClassLaser import Laser
+from Classes.ClassLaser import Laser
 
 
 class Cplot(object):
