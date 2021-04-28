@@ -417,7 +417,7 @@ class Ui_MainWindow(object):
                                          "    background-color:#EBEAE5;\n"
                                          "}")
         self.power_spinbox.setObjectName("power_spinbox")
-        self.power_spinbox.setMaximum(1195)
+        self.power_spinbox.setMaximum(1500)
         self.gridLayout_3.addWidget(self.power_spinbox, 1, 1, 1, 1)
         self.shutdown_button = QtWidgets.QPushButton(self.laser_frame)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
@@ -543,7 +543,7 @@ class Ui_MainWindow(object):
         self.sliderPower.setStyleSheet("QSlider{"
                                        "height:30px;"
                                        "}")
-        self.sliderPower.setMaximum(1195)
+        self.sliderPower.setMaximum(1500)
         self.sliderPower.setMinimum(0)
         self.sliderPower.valueChanged.connect(self.power_changed_with_slider)
         self.gridLayout_3.addWidget(self.sliderPower, 3, 0, 1, 1)
@@ -647,7 +647,7 @@ class Ui_MainWindow(object):
         if self.host == "192.168.1.108":
             maximum = 3
         else:
-            maximum = 2.5
+            maximum = 3
         y = self.laser.f(x)
         if y > maximum:
             y = maximum
