@@ -5,7 +5,6 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pyvisa as visa
 from scipy import interpolate
-from pyrpl import Pyrpl
 
 
 class Laser:

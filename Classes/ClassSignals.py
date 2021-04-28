@@ -188,6 +188,7 @@ class PulseSignals:
 
 class RampSignals:
     def __init__(self, addr=None, output=None):
+        print('init')
         self.addr = addr
         self.output = output
         self.red = MyRedpitaya()
@@ -207,6 +208,7 @@ class RampSignals:
         self.lineEdit_amplitude.setText('10')
         self.lineEdit_frequency.setText('1')
         self.lineEdit_offset.setText('0')
+        print('init finished')
 
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
