@@ -26,9 +26,9 @@ from pyqtgraph import PlotWidget
 from scipy.signal import savgol_filter
 
 # modules created
-from Laser.Classes.ClassLaser import USBScope, Laser
-from Laser.Views.cplot import Cplot
-from Laser.Classes.ClassRedPitaya import MyRedpitaya
+from Classes.ClassLaser import USBScope, Laser
+from Views.cplot import Cplot
+from Classes.ClassRedPitaya import MyRedpitaya
 
 
 class Ui_MainWindow(object):
@@ -45,9 +45,13 @@ class Ui_MainWindow(object):
         self.laser = Laser(host=self.host)
         self.red = MyRedpitaya()
 
+        self.Data = np.array([])
+        self.Time = np.array([])
+        self.volt = np.array([])
+
         self.worker = WorkerThread(self.plotAbsSat)
         self.timer = QtCore.QTimer()
-        self.timer.setInterval(6000)
+        self.timer.setInterval(5000)
         self.timer.timeout.connect(self.get_data_with_thread)
         self.timer.start()
 
@@ -69,7 +73,7 @@ class Ui_MainWindow(object):
             try:
                 self.scope = USBScope(addr=self.addr_scope)
                 self.scope.set_scales(channel=2, x=2.51, offset=1.52, horizontal_scale=100)
-                self.scope.set_scales(channel=4, x=1, offset=-6.84, horizontal_scale=100)
+                self.scope.set_scales(channel=4, x=1, offset=-1.84, horizontal_scale=100)
             except:
                 self.dialog_browser.setText("couldn't scale axis")
         else:
@@ -505,7 +509,7 @@ class Ui_MainWindow(object):
         self.display_laser_state_button.setObjectName("display_laser_state_button")
         self.gridLayout_7.addWidget(self.display_laser_state_button, 3, 0, 1, 1)
 
-        self.plotwidget_abs_sat = PlotWidget(self.display_frame, xlabel="Volts [V]")
+        self.plotwidget_abs_sat = PlotWidget(self.display_frame, xlabel="Volts [V]", histogram=None)
         self.plotwidget_abs_sat.setObjectName("plotwidget_abs_sat")
         self.gridLayout_7.addWidget(self.plotwidget_abs_sat, 1, 0, 1, 1)
         self.plotwidget_abs_sat.setLabel(axis='left', text='Transmission T(V) [wu]')
@@ -570,10 +574,6 @@ class Ui_MainWindow(object):
         self.menuIP_Configuration.addAction(self.actionScope)
         self.menubar.addAction(self.menuIP_Configuration.menuAction())
 
-        # connect menus to method:
-        self.actionLaser_Muquans.triggered.connect(self.openIPLaser)
-        self.actionAFG.triggered.connect(self.openIPAFG)
-
         # connect buttons with methods :
         self.exit_button.clicked.connect(self.exitButton)
         self.pulse_button.clicked.connect(self.openPulse)
@@ -587,6 +587,10 @@ class Ui_MainWindow(object):
         self.volt_spinbox.valueChanged.connect(self.changeFrequency)
 
         self.display_laser_state_button.clicked.connect(self.openCplot)
+
+        # diplay graphs
+        self.plotwidget_abs_sat.plotItem.showGrid(True, True, 1)
+        self.plotAbsSat()
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -795,41 +799,25 @@ class Ui_MainWindow(object):
         """
         # get data from scope :
         try:
-            self.plotwidget_abs_sat.plotItem.clear()
-            self.plotwidget_signal.plotItem.clear()
-        except:
-            # just a secured try to not kill the app.
-            pass
-        try:
             if self.host == "192.168.1.107":
-                Data, Time = self.scope.get_waveform(channels=[4], plot=False)  # contains Data:np.array, Time:np.array
-                volt, Time = self.scope.get_waveform(channels=[2], plot=False)
+                self.Data, self.Time = self.scope.get_waveform(channels=[4], plot=False)  # contains Data:np.array, Time:np.array
+                self.volt = self.scope.get_waveform(channels=[2], plot=False)[0]
             else:
-                Data, Time = self.scope.get_waveform(channels=[3], plot=False)  # contains Data:np.array, Time:np.array
-                volt, Time = self.scope.get_waveform(channels=[1], plot=False)
+                self.Data, self.Time = self.scope.get_waveform(channels=[3], plot=False)  # contains Data:np.array, Time:np.array
+                self.volt = self.scope.get_waveform(channels=[1], plot=False)[0]
             # Normalise Data to have the transmission with the good ax
             # The normalisation allows us to not use two photo-diodes cause.
             # smooth the array
-            Data = savgol_filter(Data / np.amax(Data), 21, 3)
-
+            self.Data = savgol_filter(self.Data / np.amax(self.Data), 11, 3)
+            n = len(self.Data)
             # plot
-            self.plotwidget_abs_sat.plot(volt, Data)
-            self.plotwidget_signal.plot(Time, volt)
+            self.Data = self.Data[300:n-3000]
+            self.Time = self.Time[300:n-3000]
+            self.volt = self.volt[300:n-3000]
+            self.plotwidget_abs_sat.plot(self.volt, self.Data, clear=True)
+            self.plotwidget_signal.plot(self.Time, self.volt, clear=True)
         except:
-            pass
-
-    def plotAFGSignal(self):
-        """
-        for the moment function deleted.
-        :return: None
-        """
-        try:
-            self.plotwidget_signal.plotItem.clear()
-            volt, time = self.scope.get_waveform(channels=[3])
-
-            self.plotwidget_signal.plot(time, volt)
-        except:
-            self.dialog_browser.setText('')
+            self.dialog_browser.setText("couldn't plot data")
 
     def openCplot(self):
         self.window = QtWidgets.QMainWindow()
@@ -878,12 +866,6 @@ class WorkerThread(QThread):
             self.output.emit(self.fun)
         except:
             pass
-
-
-"""
-I've been forced (for the moment) to put signal classes here because of the inherit, I couldn't import MainWindow in
-their script because it created a loop that is not allowed.
-"""
 
 
 class PulseSignals(Ui_MainWindow):
@@ -1602,4 +1584,12 @@ class SquareSignals(Ui_MainWindow):
         self.pushButton.setText(_translate("MainWindow", "Apply"))
 
 
+if __name__ == "__main__":
+    import sys
 
+    app = QtWidgets.QApplication(sys.argv)
+    MainWindow = QtWidgets.QMainWindow()
+    ui = Ui_MainWindow()
+    ui.setupUi(MainWindow)
+    MainWindow.show()
+    sys.exit(app.exec_())
