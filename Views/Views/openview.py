@@ -9,7 +9,6 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from Classes.ClassRedPitaya import MyRedpitaya
 from Views.laserui import Ui_MainWindow
 
 
@@ -122,9 +121,9 @@ class OpenView(object):
         :return: None
         """
         self.window = QtWidgets.QMainWindow()
-        self.hostname: str = "192.168.1.108"
-        self.channels: int = 1
-        self.ui_main_view = Ui_MainWindow(host=self.hostname, channel=self.channels)
+        self.ui = Ui_MainWindow(host="192.168.1.108", channel=2)
+        self.ui.setupUi(self.window)
+        self.window.show()
 
     def openShargdhag(self):
         """
@@ -132,9 +131,9 @@ class OpenView(object):
         :return: None
         """
         self.window = QtWidgets.QMainWindow()
-        self.hostname: str = "192.168.1.107"
-        self.channels: int = 2
-        self.ui_main_view = Ui_MainWindow(host=self.hostname, channel=self.channels)
+        self.ui = Ui_MainWindow(host="192.168.1.107", channel=1)
+        self.ui.setupUi(self.window)
+        self.window.show()
 
     def retranslateUi(self, openwindow):
         """

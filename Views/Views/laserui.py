@@ -19,6 +19,7 @@ Experimental setup :
 """
 # external modules
 import time
+
 import numpy as np
 from PyQt5.QtCore import QThread
 from pyqtgraph import PlotWidget
@@ -26,9 +27,8 @@ from scipy.signal import savgol_filter
 
 # modules created
 from Classes.ClassLaser import USBScope, Laser
-from Views.cplot import Cplot
 from Classes.ClassSignals import *
-from Classes.ClassRedPitaya import MyRedpitaya
+from Views.cplot import Cplot
 
 
 class Ui_MainWindow(object):
@@ -46,7 +46,7 @@ class Ui_MainWindow(object):
         self.red = MyRedpitaya()
         self.worker = WorkerThread(self.plotAbsSat)
         self.timer = QtCore.QTimer()
-        self.timer.setInterval(3000)
+        self.timer.setInterval(5000)
         self.timer.timeout.connect(self.get_data_with_thread)
         self.timer.start()
 
@@ -524,7 +524,7 @@ class Ui_MainWindow(object):
         self.sliderOffset.setObjectName("sliderOffset")
         self.sliderOffset.setMaximum(28)
         self.sliderOffset.setMinimum(-80)
-        self.sliderOffset.setSingleStep(0.25)
+        self.sliderOffset.setSingleStep(1)
         self.sliderOffset.valueChanged.connect(self.voltage_changed_with_slider)
         self.sliderPower = QtWidgets.QSlider(self.laser_frame)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
@@ -587,6 +587,10 @@ class Ui_MainWindow(object):
         # diplay graphs
         self.plotwidget_abs_sat.plotItem.showGrid(True, True, 1)
         self.plotAbsSat()
+        self.plotwidget_abs_sat.setXRange(-8, 3)
+        self.plotwidget_abs_sat.setYRange(0, 1.1)
+        self.plotwidget_signal.setXRange(0, 1)
+        self.plotwidget_signal.setYRange(-8, 3)
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -714,7 +718,6 @@ class Ui_MainWindow(object):
         value = float(str(self.volt_spinbox.value()))
         try:
             self.red.set_dc_offset(output=self.channel, offset=value)
-            # lock.lock()
             self.dialog_browser.setText(f"offset {value} V")
         except:
             self.dialog_browser.setText("Error, could not connect to the AFG by this way")
@@ -725,10 +728,10 @@ class Ui_MainWindow(object):
         :return: None
         """
         try:
-            self.window = QtWidgets.QMainWindow()
+            self.pulse_view = QtWidgets.QMainWindow()
             self.ui_pulse = PulseSignals(output=self.channel)
-            self.ui_pulse.setupUi(self.window)
-            self.window.show()
+            self.ui_pulse.setupUi(self.pulse_view)
+            self.pulse_view.show()
         except:
             self.dialog_browser.setText("error, could not connect to specified AFG")
 
@@ -738,28 +741,28 @@ class Ui_MainWindow(object):
         :return: None
         """
         try:
-            self.window = QtWidgets.QMainWindow()
+            self.ramp_view = QtWidgets.QMainWindow()
             self.ui_ramp = RampSignals(output=self.channel, red=self.red)
-            self.ui_ramp.setupUi(self.window)
-            self.window.show()
+            self.ui_ramp.setupUi(self.ramp_view)
+            self.ramp_view.show()
         except:
             self.dialog_browser.setText("error, could not connect to specified AFG")
 
     def openSine(self):
         try:
-            self.window = QtWidgets.QMainWindow()
+            self.sine_view = QtWidgets.QMainWindow()
             self.ui_sine = SineSignals(output=self.channel)
-            self.ui_sine.setupUi(self.window)
-            self.window.show()
+            self.ui_sine.setupUi(self.sine_view)
+            self.sine_view.show()
         except:
             self.dialog_browser.setText("error, could not connect to specified AFG")
 
     def openSquare(self):
         try:
-            self.window = QtWidgets.QMainWindow()
-            self.ui_square = SquareSignals(output=self.channel)
-            self.ui_square.setupUi(self.window)
-            self.window.show()
+            self.square_view = QtWidgets.QMainWindow()
+            self.ui_square = SquareSignals(output=self.square_view)
+            self.ui_square.setupUi(self.square_view)
+            self.square_view.show()
         except:
             self.dialog_browser.setText("error, could not connect to specified AFG")
 
@@ -796,30 +799,27 @@ class Ui_MainWindow(object):
         # get data from scope :
         try:
             if self.host == "192.168.1.107":
-                self.Data, self.Time = self.scope.get_waveform(channels=[4], plot=False)  # contains Data:np.array, Time:np.array
+                self.Data, self.Time = self.scope.get_waveform(channels=[4], plot=False)
                 self.volt = self.scope.get_waveform(channels=[2], plot=False)[0]
             else:
-                self.Data, self.Time = self.scope.get_waveform(channels=[3], plot=False)  # contains Data:np.array, Time:np.array
+                self.Data, self.Time = self.scope.get_waveform(channels=[3], plot=False)
                 self.volt = self.scope.get_waveform(channels=[1], plot=False)[0]
             # Normalise Data to have the transmission with the good ax
             # The normalisation allows us to not use two photo-diodes cause.
             # smooth the array
             self.Data = savgol_filter(self.Data / np.amax(self.Data), 11, 3)
-            n = len(self.Data)
+
             # plot
-            self.Data = self.Data[300:n-3000]
-            self.Time = self.Time[300:n-3000]
-            self.volt = self.volt[300:n-3000]
             self.plotwidget_abs_sat.plot(self.volt, self.Data, clear=True)
             self.plotwidget_signal.plot(self.Time, self.volt, clear=True)
         except:
             self.dialog_browser.setText("couldn't plot data")
 
     def openCplot(self):
-        self.window = QtWidgets.QMainWindow()
+        self.cplot_view = QtWidgets.QMainWindow()
         self.ui_ramp = Cplot(host=self.host)
-        self.ui_ramp.setupUi(self.window)
-        self.window.show()
+        self.ui_ramp.setupUi(self.cplot_view)
+        self.cplot_view.show()
 
     def get_data_with_thread(self):
         """
