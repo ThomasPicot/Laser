@@ -6,8 +6,7 @@ class MyRedpitaya:
     def __init__(self, host: str = "192.168.1.222"):
         self.host: str = host
         try:
-            self.p = Pyrpl()
-            print('connected to redpitaya')
+            self.p = Pyrpl(config="global_config")
         except:
             print("error could't connect to redpitaya")
 
@@ -48,7 +47,7 @@ class MyRedpitaya:
             asg.output_direct = 'out1'
         else:
             asg.output_direct = 'out2'
-        asg.setup(waveform='dc', offset=offset/11.7)
+        asg.setup(waveform='dc', offset=1.2888608208696757*offset/11.7)
 
     def set_pulse(self, output: int = None, frequency: int = 1, amplitude: float = 1, offset: float = 0):
         r = self.p.rp

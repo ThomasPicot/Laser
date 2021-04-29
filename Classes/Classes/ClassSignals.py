@@ -188,7 +188,6 @@ class PulseSignals:
 
 class RampSignals:
     def __init__(self, addr=None, output=None, red=None):
-        print('init')
         self.addr = addr
         self.output = output
         self.red = red
@@ -208,10 +207,8 @@ class RampSignals:
         self.lineEdit_amplitude.setText('10')
         self.lineEdit_frequency.setText('1')
         self.lineEdit_offset.setText('0')
-        print('init finished')
 
     def setupUi(self, MainWindow):
-        print('setup UI')
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(261, 320)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Minimum)
@@ -362,9 +359,7 @@ class RampSignals:
         amplitude = float(self.lineEdit_amplitude.text())
         frequency = float(self.lineEdit_frequency.text())
         offset = float(self.lineEdit_offset.text())
-        print(amplitude, offset, frequency)
         self.red.set_ramp(output=self.output, frequency=frequency, amplitude=amplitude, offset=offset)
-        print('set')
 
     def retranslateUi(self, MainWindow):
         """

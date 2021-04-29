@@ -29,7 +29,7 @@ class Laser:
             y_array = np.arange(0, 3.1, 0.1)
             self.f = interpolate.interp1d(x_array, y_array)
         else:
-            x_array = np.array([00, 10.3, 34.5, 46, 84, 127, 174, 222, 272, 322, 375, 426, 478, 531, 585, 638, 692,
+            x_array = np.array([0.0, 10.3, 34.5, 46, 84, 127, 174, 222, 272, 322, 375, 426, 478, 531, 585, 638, 692,
                                 747, 802, 857, 922, 975, 1035, 1095, 1145, 1195, 1220, 1295, 1337, 1380, 1417])
             y_array = np.arange(0, 3.1, 0.1)
             self.f = interpolate.interp1d(x_array, y_array)
