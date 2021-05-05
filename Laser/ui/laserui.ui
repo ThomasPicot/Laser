@@ -1,0 +1,687 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1639</width>
+    <height>1052</height>
+   </rect>
+  </property>
+  <property name="font">
+   <font>
+    <family>Poppins</family>
+   </font>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QMainWindow{
+	background-color:#333437;
+}</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="font">
+    <font>
+     <family>Poppins</family>
+    </font>
+   </property>
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
+     <widget class="QWidget" name="left_widget" native="true">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="font">
+       <font>
+        <family>Poppins</family>
+       </font>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_2">
+       <item row="2" column="0">
+        <widget class="QFrame" name="dialog_frame">
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_5">
+          <item row="1" column="0">
+           <widget class="QTextBrowser" name="dialog_browser">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QPushButton" name="exit_button">
+            <property name="font">
+             <font>
+              <family>Poppins</family>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton {
+	background-color:#E5E5DB;
+	color:#303030;
+	border-radius:4px;
+	transition-duration: 0.4s;
+	height:20px;
+    width: 115px
+}
+                      
+QPushButton:hover {
+	background-color: #D4DAFF; 
+	color:#FDFAEB;
+}
+
+QPushButton:pressed {
+	background-color: #303030;
+	color:#FAF9F9;
+}
+
+</string>
+            </property>
+            <property name="text">
+             <string>Exit</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="dialog_label">
+            <property name="styleSheet">
+             <string notr="true">QLabel{
+	color:#FAF9F9;
+	font: 75 15pt &quot;Poppins&quot;;
+}</string>
+            </property>
+            <property name="text">
+             <string>TextLabel</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QFrame" name="afg_frame">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_4">
+          <item row="0" column="0">
+           <widget class="QLabel" name="afg_label">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="font">
+             <font>
+              <family>Poppins</family>
+              <pointsize>15</pointsize>
+              <weight>9</weight>
+              <italic>false</italic>
+              <bold>false</bold>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QLabel{
+	color:#FAF9F9;
+	font: 75 15pt &quot;Poppins&quot;;
+}</string>
+            </property>
+            <property name="text">
+             <string>AFG Controler</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QPushButton" name="sine_button">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="font">
+             <font>
+              <family>Poppins</family>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton {
+	background-color:#E5E5DB;
+	color:#303030;
+	border-radius:4px;
+	transition-duration: 0.4s;
+	height:20px;
+    width: 115px
+}
+                      
+QPushButton:hover {
+	background-color: #D4DAFF; 
+	color:#FDFAEB;
+}
+
+QPushButton:pressed {
+	background-color: #303030;
+	color:#FAF9F9;
+}
+
+</string>
+            </property>
+            <property name="text">
+             <string>Sine</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <widget class="QLabel" name="volt_label">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="font">
+             <font>
+              <family>Poppins</family>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QLabel{
+	color:#FAF9F9;
+	font: 13pt &quot;Poppins&quot;;
+}</string>
+            </property>
+            <property name="text">
+             <string>sent to the Laser Diode</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QPushButton" name="ramp_button">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="font">
+             <font>
+              <family>Poppins</family>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton {
+	background-color:#E5E5DB;
+	color:#303030;
+	border-radius:4px;
+	transition-duration: 0.4s;
+	height:20px;
+    width: 115px
+}
+                      
+QPushButton:hover {
+	background-color: #D4DAFF; 
+	color:#FDFAEB;
+}
+
+QPushButton:pressed {
+	background-color: #303030;
+	color:#FAF9F9;
+}
+
+</string>
+            </property>
+            <property name="text">
+             <string>Ramp</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QDoubleSpinBox" name="volt_spinbox">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QDoubleSpinBox{
+	width:50px;
+	background-color:#EBEAE5;
+}</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QPushButton" name="pulse_button">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="font">
+             <font>
+              <family>Poppins</family>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton {
+	background-color:#E5E5DB;
+	color:#303030;
+	border-radius:4px;
+	transition-duration: 0.4s;
+	height:20px;
+    width: 115px
+}
+                      
+QPushButton:hover {
+	background-color: #D4DAFF; 
+	color:#FDFAEB;
+}
+
+QPushButton:pressed {
+	background-color: #303030;
+	color:#FAF9F9;
+}
+
+</string>
+            </property>
+            <property name="text">
+             <string>Pulse</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QPushButton" name="square_button">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="font">
+             <font>
+              <family>Poppins</family>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton {
+	background-color:#E5E5DB;
+	color:#303030;
+	border-radius:4px;
+	transition-duration: 0.4s;
+	height:20px;
+    width: 115px
+}
+                      
+QPushButton:hover {
+	background-color: #D4DAFF; 
+	color:#FDFAEB;
+}
+
+QPushButton:pressed {
+	background-color: #303030;
+	color:#FAF9F9;
+}
+
+</string>
+            </property>
+            <property name="text">
+             <string>Square</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="3">
+           <spacer name="horizontalSpacer_2">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QFrame" name="laser_frame">
+         <property name="font">
+          <font>
+           <family>Poppins</family>
+          </font>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_3">
+          <item row="0" column="0">
+           <widget class="QRadioButton" name="diode_button">
+            <property name="font">
+             <font>
+              <family>Poppins</family>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QRadioButton{
+	color:#FAF9F9;
+}</string>
+            </property>
+            <property name="text">
+             <string>Diode &lt;ON|OFF&gt;</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="2">
+           <widget class="QLabel" name="power_label">
+            <property name="font">
+             <font>
+              <family>Poppins</family>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QLabel{
+	color:#FAF9F9;
+	font: 13pt &quot;Poppins&quot;;
+}</string>
+            </property>
+            <property name="text">
+             <string>sent to the Laser EDFA</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="edfa_label">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="font">
+             <font>
+              <family>Poppins</family>
+              <pointsize>15</pointsize>
+              <weight>9</weight>
+              <italic>false</italic>
+              <bold>false</bold>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QLabel{
+	color:#FAF9F9;
+	font: 75 15pt &quot;Poppins&quot;;
+}</string>
+            </property>
+            <property name="text">
+             <string>EDFA Controler</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QDoubleSpinBox" name="power_spinbox">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="font">
+             <font/>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QDoubleSpinBox{
+	width:50px;
+	background-color:#EBEAE5;
+}</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QPushButton" name="shutdown_button">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="font">
+             <font>
+              <family>Poppins</family>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton {
+	background-color:#E5E5DB;
+	color:#303030;
+	border-radius:4px;
+	transition-duration: 0.4s;
+	height:20px;
+    width: 115px
+}
+                      
+QPushButton:hover {
+	background-color: #D4DAFF; 
+	color:#FDFAEB;
+}
+
+QPushButton:pressed {
+	background-color: #303030;
+	color:#FAF9F9;
+}
+
+</string>
+            </property>
+            <property name="text">
+             <string>Shutdown</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="3">
+           <spacer name="horizontalSpacer">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item row="0" column="1">
+     <widget class="QWidget" name="right_widget" native="true">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="font">
+       <font>
+        <family>Poppins</family>
+       </font>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_6">
+       <item row="0" column="0">
+        <widget class="QFrame" name="display_frame">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_7">
+          <item row="3" column="0">
+           <widget class="QPushButton" name="display_laser_state_button">
+            <property name="font">
+             <font>
+              <family>Poppins</family>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton {
+	background-color:#E5E5DB;
+	color:#303030;
+	border-radius:4px;
+	transition-duration: 0.4s;
+	height:20px;
+    width: 115px
+}
+                      
+QPushButton:hover {
+	background-color: #D4DAFF; 
+	color:#FDFAEB;
+}
+
+QPushButton:pressed {
+	background-color: #303030;
+	color:#FAF9F9;
+}
+
+</string>
+            </property>
+            <property name="text">
+             <string>CPLOT COMMAND</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QPushButton" name="display_signals_button">
+            <property name="font">
+             <font>
+              <family>Poppins</family>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton {
+	background-color:#E5E5DB;
+	color:#303030;
+	border-radius:4px;
+	transition-duration: 0.4s;
+	height:20px;
+    width: 115px
+}
+                      
+QPushButton:hover {
+	background-color: #D4DAFF; 
+	color:#FDFAEB;
+}
+
+QPushButton:pressed {
+	background-color: #303030;
+	color:#FAF9F9;
+}
+
+</string>
+            </property>
+            <property name="text">
+             <string>Get saturated Absorption</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="PlotWidget" name="plotwidget_abs_sat" native="true"/>
+          </item>
+          <item row="2" column="0">
+           <widget class="PlotWidget" name="plotwidget_signal" native="true"/>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1639</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuIP_Configuration">
+    <property name="title">
+     <string>IP Configuration</string>
+    </property>
+    <addaction name="actionLaser_Muquans"/>
+    <addaction name="actionAFG"/>
+    <addaction name="actionScope"/>
+   </widget>
+   <addaction name="menuIP_Configuration"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionLaser_Muquans">
+   <property name="text">
+    <string>Laser Muquans</string>
+   </property>
+  </action>
+  <action name="actionAFG">
+   <property name="text">
+    <string>AFG </string>
+   </property>
+  </action>
+  <action name="actionScope">
+   <property name="text">
+    <string>Scope</string>
+   </property>
+  </action>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>PlotWidget</class>
+   <extends>QWidget</extends>
+   <header>pyqtgraph</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>
